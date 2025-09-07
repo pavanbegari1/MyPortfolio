@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pavan Begari Portfolio</title>
+<style>
+  body {
+    margin:0;
+    font-family:"Segoe UI",sans-serif;
+    background:#f4f7fb;
+    color:#333;
+    line-height:1.6;
+  }
+
+  /* Header */
+  header {
+    background: linear-gradient(135deg,#0f2027,#2c5364,#203a43);
+    color:white;
+    padding:3rem 1rem 2rem 1rem;
+    text-align:center;
+  }
+  header img {
+    width:200px;
+    height:200px;
+    border-radius:50%;
+    border:5px solid white;
+    box-shadow:0 6px 18px rgba(0,0,0,0.35);
+    object-fit:cover;
+    margin-bottom:15px;
+  }
+  header h1{
+    margin:10px 0 5px 0;
+  }
+  header p{
+    margin:5px 0 15px 0;
+    font-size:1rem;
+    font-weight:bold;
+  }
+  nav{
+    margin-top:15px;
+  }
+  nav a{
+    color:white;
+    margin:0 12px;
+    text-decoration:none;
+    font-weight:bold;
+    transition:0.3s;
+  }
+  nav a:hover{
+    color:#ffd700;
+  }
+
+  /* Sections */
+  section{
+    padding:40px 20px;
+    max-width:1200px;
+    margin:auto;
+  }
+  h2{
+    color:#2c5364;
+    border-bottom:3px solid #2c5364;
+    display:inline-block;
+    margin-bottom:25px;
+  }
+
+  /* About + Skills Grid */
+  .about-skills{
+    display:grid;
+    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    gap:20px;
+  }
+  .about-skills .card{
+    background:white;
+    border-radius:12px;
+    padding:20px;
+    box-shadow:0 5px 12px rgba(0,0,0,0.1);
+    transition:transform 0.3s,box-shadow 0.3s;
+  }
+  .about-skills .card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 8px 18px rgba(0,0,0,0.2);
+  }
+
+  /* Skills badges */
+  .skills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+  }
+  .skill{
+    background:linear-gradient(135deg,#1a73e8,#00c6ff);
+    color:white;
+    padding:8px 15px;
+    border-radius:20px;
+    font-weight:bold;
+    font-size:14px;
+    transition:0.3s;
+  }
+  .skill:hover{
+    background:linear-gradient(135deg,#00c6ff,#1a73e8);
+  }
+
+  /* Grid Cards for Certifications & Projects */
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:20px;
+  }
+  .card{
+    background:white;
+    border-radius:12px;
+    box-shadow:0 5px 12px rgba(0,0,0,0.1);
+    padding:18px;
+    transition:transform 0.3s,box-shadow 0.3s;
+  }
+  .card:hover{
+    transform:translateY(-7px);
+    box-shadow:0 8px 18px rgba(0,0,0,0.2);
+  }
+  .card img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+    border-radius:10px;
+    margin-bottom:12px;
+    cursor:pointer;
+  }
+  .card h3{
+    margin:8px 0;
+    color:#203a43;
+  }
+  .card p{
+    font-size:0.95rem;
+    color:#555;
+  }
+  .card a{
+    color:#1a73e8;
+    text-decoration:none;
+    font-weight:bold;
+  }
+
+  /* Contact spacing fix */
+  #contact p {
+    margin:6px 0;
+    font-size:1rem;
+  }
+
+  /* Footer */
+  footer{
+    background: linear-gradient(135deg,#2c5364,#203a43,#0f2027);
+    color:white;
+    text-align:center;
+    padding:15px;
+    margin-top:40px;
+  }
+
+  /* Lightbox Styles */
+  .lightbox {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    padding-top: 60px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background: rgba(0,0,0,0.9);
+  }
+  .lightbox-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 80%;
+    border-radius: 10px;
+  }
+  .close {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    color: white;
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .close:hover {
+    color: #ff4444;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    header img {
+      width:160px;
+      height:160px;
+    }
+    nav a {
+      display: inline-block;
+      margin:8px;
+      font-size:14px;
+    }
+    section {
+      padding:25px 15px;
+    }
+    .skills {
+      gap:8px;
+    }
+    .skill {
+      font-size:12px;
+      padding:6px 12px;
+    }
+    .card img {
+      height:180px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    header h1 {
+      font-size:1.5rem;
+    }
+    header p {
+      font-size:0.9rem;
+    }
+    nav {
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+    nav a {
+      margin:5px;
+      font-size:13px;
+    }
+    .card img {
+      height:160px;
+    }
+  }
+</style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <img src="IMG-20250711-WA0006.jpg" alt="Pavan Begari">
+    <h1>Pavan Begari</h1>
+    <p>Data Analyst @Tata Consultancy Services | SQL | Python | Excel | Tableau | Data Analysis</p>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#certifications">Certifications</a>
+      <a href="#projects">Projects</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- About + Skills -->
+  <section class="about-skills">
+    <div class="card" id="about">
+      <h2>About Me</h2>
+      <p>Analytical and insightful Data Analyst known for productivity and efficiency in task completion. Specialize in data visualization, statistical analysis, and predictive modeling. Excel in problem-solving, critical thinking, and communication, ensuring successful project outcomes and team collaboration.</p>
+    </div>
+    <div class="card" id="skills">
+      <h2>Skills</h2>
+      <div class="skills">
+        <div class="skill">SQL (MySQL, PostgreSQL)</div>
+        <div class="skill">PL SQL</div>
+        <div class="skill">Tableau</div>
+        <div class="skill">Python</div>
+        <div class="skill">Microsoft Excel</div>
+        <div class="skill">AWS (Amazon Web Services)</div>
+        <div class="skill">Git & GitHub</div>
+        <div class="skill">Informatica</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section id="certifications">
+    <h2>Certifications</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="SQL_Basic_certificate.png" alt="SQL Basic">
+        <h3>HackerRank SQL (Basic)</h3>
+      </div>
+      <div class="card">
+        <img src="SQL_Intermediate_certificate.png" alt="SQL Intermediate">
+        <h3>HackerRank SQL (Intermediate)</h3>
+      </div>
+      <div class="card">
+        <img src="SQL_Advanced_certificate.png" alt="SQL Advanced">
+        <h3>HackerRank SQL (Advanced)</h3>
+      </div>
+      <div class="card">
+        <img src="cert_gcloud.png" alt="Google Cloud">
+        <h3>Google Cloud – Generative AI Leader</h3>
+      </div>
+      <div class="card">
+        <img src="AWS cloud certification.png" alt="AWS Certified Cloud Practitioner">
+        <h3>AWS Certified Cloud Practitioner</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects / Dashboards -->
+  <section id="projects">
+    <h2>Excel Dashboards</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="FNP Sales Project Screenshot.png" alt="Ferns & Petals Dashboard" class="zoom-img">
+        <h3>Ferns & Petals Sales Dashboard</h3>
+        <p>Analyzed sales data across occasions, customers, and products to identify trends, top revenue drivers, and customer spending behavior.</p>
+      </div>
+      <div class="card">
+        <img src="Road Accidents .png" alt="Road Accident Analysis Dashboard" class="zoom-img">
+        <h3>Road Accident Analysis Dashboard</h3>
+        <p>Examined accident data (2021–22) by road type, severity, and time trends to uncover high-risk conditions and locations.</p>
+      </div>
+      <div class="card">
+        <img src="call center data screen shot.png" alt="Call Center Performance Dashboard" class="zoom-img">
+        <h3>Call Center Performance Dashboard</h3>
+        <p>Tracked call volumes, revenue, and agent KPIs to evaluate productivity and customer satisfaction.</p>
+      </div>
+      <div class="card">
+        <img src="Vrinda store annual report.png" alt="Retail Store Sales Dashboard" class="zoom-img">
+        <h3>Retail Store Sales Dashboard</h3>
+        <p>Monitored annual sales by gender, state, and channel, highlighting customer purchase behavior and seasonal trends.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section id="education">
+    <h2>Education</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>Bachelor of Technology (Mechanical Engineering)</h3>
+        <p>B V Raju Institute of Technology, Narsapur (05/2023)</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Mobile: 8688656575</p>
+    <p>Email: <a href="mailto:begaripavan2@gmail.com">begaripavan2@gmail.com</a></p>
+    <p>LinkedIn: <a href="https://linkedin.com/in/begari-pavan-kumar-6b40b322b" target="_blank">linkedin.com/in/begari-pavan-kumar-6b40b322b</a></p>
+    <p>GitHub: <a href="https://github.com/pavanbegari1" target="_blank">github.com/pavanbegari1</a></p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 Pavan Begari. All rights reserved.</p>
+  </footer>
+
+  <!-- Lightbox Modal -->
+  <div id="lightbox" class="lightbox">
+    <span class="close">&times;</span>
+    <img class="lightbox-content" id="lightbox-img">
+  </div>
+
+<script>
+  // Lightbox
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = document.getElementById("lightbox-img");
+  const closeBtn = document.querySelector(".close");
+
+  document.querySelectorAll(".zoom-img").forEach(img => {
+    img.addEventListener("click", () => {
+      lightbox.style.display = "block";
+      lightboxImg.src = img.src;
+      lightboxImg.alt = img.alt;
+    });
+  });
+
+  closeBtn.onclick = function() {
+    lightbox.style.display = "none";
+  }
+
+  window.onclick = function(event) {
+    if (event.target == lightbox) {
+      lightbox.style.display = "none";
+    }
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") {
+      lightbox.style.display = "none";
+    }
+  });
+</script>
+
+</body>
+</html>
