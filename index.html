@@ -1,352 +1,545 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Pavan Begari Portfolio</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
 <style>
-  body {
-    margin:0;
-    font-family:"Segoe UI",sans-serif;
-    background:#f4f7fb;
-    color:#333;
-    line-height:1.6;
+  :root{
+    --bg:#f4f7fb;
+    --text:#1f2933;
+    --muted:#64707a;
+
+    /* Theme A - Royal Blue Gradient (enhanced) */
+    --grad-1: #071b2a; /* deep navy */
+    --grad-2: #123a4a; /* teal-blue */
+    --accent: #2c9ad6; /* highlight */
+    --glass: rgba(255,255,255,0.06);
+    --glass-2: rgba(255,255,255,0.08);
+    --card-shadow: 0 8px 30px rgba(17,24,39,0.08);
+    --glass-border: rgba(255,255,255,0.08);
+    --glass-backdrop: rgba(255,255,255,0.03);
+    --glass-glow: 0 6px 20px rgba(44,154,214,0.12);
+    --badge-gradient: linear-gradient(135deg,#1a73e8,#00c6ff);
+    --rounded: 14px;
   }
 
-  /* Header */
-  header {
-    background: linear-gradient(135deg,#0f2027,#2c5364,#203a43);
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: linear-gradient(180deg, #eef4fb 0%, #f8fbff 100%);
+    color:var(--text);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.55;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* ===== Header / Hero ===== */
+  header{
+    position:sticky;
+    top:0;
+    z-index:40;
+    background: linear-gradient(135deg,var(--grad-1),var(--grad-2));
     color:white;
-    padding:3rem 1rem 2rem 1rem;
-    text-align:center;
+    padding:32px 18px;
+    box-shadow: 0 6px 20px rgba(8,18,28,0.25);
+    transition:padding 300ms ease, backdrop-filter 300ms ease;
+    backdrop-filter: blur(6px);
   }
-  header img {
-    width:200px;
-    height:200px;
+  header.container{
+    max-width:1200px;
+    margin:0 auto;
+    display:flex;
+    align-items:center;
+    gap:20px;
+    justify-content:space-between;
+  }
+  .brand-left{
+    display:flex;
+    align-items:center;
+    gap:18px;
+  }
+  header img{
+    width:92px;
+    height:92px;
     border-radius:50%;
-    border:5px solid white;
-    box-shadow:0 6px 18px rgba(0,0,0,0.35);
+    border:4px solid rgba(255,255,255,0.12);
+    box-shadow:var(--glass-glow);
     object-fit:cover;
-    margin-bottom:15px;
+    transition:transform .35s ease, box-shadow .35s ease;
   }
+  header img:hover{ transform:translateY(-3px) scale(1.02); box-shadow:0 12px 40px rgba(0,0,0,0.28); }
+
   header h1{
-    margin:10px 0 5px 0;
+    margin:0;
+    font-size:20px;
+    font-weight:700;
+    letter-spacing:0.2px;
   }
   header p{
-    margin:5px 0 15px 0;
-    font-size:1rem;
-    font-weight:bold;
-  }
-  nav{
-    margin-top:15px;
-  }
-  nav a{
-    color:white;
-    margin:0 12px;
-    text-decoration:none;
-    font-weight:bold;
-    transition:0.3s;
-  }
-  nav a:hover{
-    color:#ffd700;
+    margin:0;
+    font-size:12px;
+    opacity:0.9;
+    color:rgba(255,255,255,0.9);
+    font-weight:500;
   }
 
-  /* Sections */
-  section{
-    padding:40px 20px;
+  /* Nav */
+  nav.main-nav{
+    display:flex;
+    gap:12px;
+    align-items:center;
+  }
+  nav.main-nav a{
+    color:rgba(255,255,255,0.9);
+    text-decoration:none;
+    padding:8px 12px;
+    font-weight:600;
+    border-radius:10px;
+    transition:all 220ms ease;
+    position:relative;
+    font-size:13px;
+  }
+  nav.main-nav a::after{
+    content:"";
+    position:absolute;
+    left:12px;
+    right:12px;
+    bottom:6px;
+    height:2px;
+    border-radius:2px;
+    background:transparent;
+    transition:all 220ms ease;
+    transform-origin:center;
+  }
+  nav.main-nav a:hover{ transform:translateY(-3px); color:#fff; }
+  nav.main-nav a.active{
+    background: linear-gradient(90deg, rgba(255,255,255,0.08), rgba(255,255,255,0.03));
+    box-shadow: inset 0 -2px 0 rgba(255,255,255,0.02);
+    color:#fff;
+  }
+  nav.main-nav a.active::after{
+    background: linear-gradient(90deg,var(--accent), #8be0ff);
+    height:3px;
+    bottom:4px;
+  }
+
+  /* Header compact on scroll */
+  .shrink{
+    padding:14px 18px !important;
+  }
+
+  /* ===== Section layout ===== */
+  main{
     max-width:1200px;
-    margin:auto;
+    margin:26px auto;
+    padding:0 18px 60px 18px;
+  }
+  section{
+    margin-bottom:40px;
+    padding:18px 0;
   }
   h2{
-    color:#2c5364;
-    border-bottom:3px solid #2c5364;
+    color:var(--grad-2);
     display:inline-block;
-    margin-bottom:25px;
+    margin:0 0 18px 0;
+    font-weight:700;
+    font-size:20px;
+    position:relative;
+  }
+  h2::after{
+    content:"";
+    display:block;
+    height:4px;
+    width:56px;
+    margin-top:10px;
+    background:linear-gradient(90deg,var(--accent), #6fc5ff);
+    border-radius:4px;
+    opacity:0.95;
   }
 
-  /* About + Skills Grid */
-  .about-skills{
+  /* Grid helpers */
+  .grid{
     display:grid;
-    grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+    grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
     gap:20px;
   }
-  .about-skills .card{
-    background:white;
-    border-radius:12px;
-    padding:20px;
-    box-shadow:0 5px 12px rgba(0,0,0,0.1);
-    transition:transform 0.3s,box-shadow 0.3s;
+
+  /* ===== About & Skills Cards (glass) ===== */
+  .about-skills{
+    display:grid;
+    grid-template-columns: 1.15fr .85fr;
+    gap:18px;
   }
-  .about-skills .card:hover{
-    transform:translateY(-5px);
-    box-shadow:0 8px 18px rgba(0,0,0,0.2);
+  .card{
+    background: linear-gradient(180deg, rgba(255,255,255,0.8), rgba(255,255,255,0.75));
+    border-radius:var(--rounded);
+    padding:20px;
+    box-shadow: var(--card-shadow);
+    border: 1px solid var(--glass-border);
+    transition: transform 320ms cubic-bezier(.2,.9,.2,1), box-shadow 320ms;
+    overflow:hidden;
+    position:relative;
+    backdrop-filter: blur(8px) saturate(110%);
+  }
+  .card:hover{
+    transform: translateY(-8px);
+    box-shadow: 0 18px 42px rgba(17,24,39,0.12);
+  }
+  .card h3, .card h4{
+    margin:8px 0;
+    color:var(--grad-2);
   }
 
-  /* Skills badges */
+  /* About text */
+  #about p{
+    margin:10px 0 0 0;
+    color:var(--muted);
+    font-size:15px;
+  }
+
+  /* Skills badges (modern) */
   .skills{
     display:flex;
     flex-wrap:wrap;
-    gap:12px;
+    gap:10px;
+    margin-top:8px;
   }
   .skill{
-    background:linear-gradient(135deg,#1a73e8,#00c6ff);
-    color:white;
-    padding:8px 15px;
-    border-radius:20px;
-    font-weight:bold;
-    font-size:14px;
-    transition:0.3s;
+    padding:8px 14px;
+    border-radius:999px;
+    font-weight:600;
+    font-size:13px;
+    background: linear-gradient(135deg, rgba(26,115,232,0.12), rgba(0,198,255,0.07));
+    border: 1px solid rgba(255,255,255,0.5);
+    color: #08324a;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 6px 16px rgba(12,45,67,0.04);
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    cursor:default;
   }
-  .skill:hover{
-    background:linear-gradient(135deg,#00c6ff,#1a73e8);
+  .skill::before{
+    content:"";
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background: linear-gradient(90deg,#1a73e8,#00c6ff);
+    box-shadow: 0 3px 10px rgba(26,115,232,0.18);
   }
 
-  /* Grid Cards for Certifications & Projects */
-  .grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:20px;
-  }
-  .card{
-    background:white;
-    border-radius:12px;
-    box-shadow:0 5px 12px rgba(0,0,0,0.1);
-    padding:18px;
-    transition:transform 0.3s,box-shadow 0.3s;
-  }
-  .card:hover{
-    transform:translateY(-7px);
-    box-shadow:0 8px 18px rgba(0,0,0,0.2);
-  }
-  .card img{
+  /* Certifications & Projects cards (image-based) */
+  .card .thumb{
     width:100%;
     height:200px;
-    object-fit:cover;
     border-radius:10px;
+    overflow:hidden;
+    background:linear-gradient(180deg, rgba(0,0,0,0.04), rgba(0,0,0,0.02));
     margin-bottom:12px;
-    cursor:pointer;
+    position:relative;
+    cursor:zoom-in;
   }
-  .card h3{
-    margin:8px 0;
-    color:#203a43;
+  .card .thumb img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+    transform-origin:center;
+    transition: transform 420ms cubic-bezier(.2,.9,.2,1);
   }
-  .card p{
-    font-size:0.95rem;
-    color:#555;
-  }
-  .card a{
-    color:#1a73e8;
-    text-decoration:none;
-    font-weight:bold;
+  .card:hover .thumb img{ transform: scale(1.04) rotate(-0.5deg); }
+
+  .card h3{ margin:6px 0 6px 0; font-size:16px;}
+  .card p{ margin:0; color:var(--muted); font-size:14px; }
+
+  /* Project overlay tag */
+  .tag{
+    position:absolute;
+    top:12px;
+    left:12px;
+    background: linear-gradient(90deg,var(--accent), #6fc5ff);
+    color:white;
+    padding:6px 9px;
+    border-radius:8px;
+    font-weight:700;
+    font-size:12px;
+    box-shadow: 0 8px 20px rgba(44,154,214,0.12);
   }
 
-  /* Contact spacing fix */
-  #contact p {
-    margin:6px 0;
-    font-size:1rem;
-  }
+  /* Education card variant */
+  #education .card{ display:flex; align-items:center; gap:16px; padding:18px; }
+  #education .card h3{ font-size:16px; margin:0; }
+  #education .card p{ margin:0; color:var(--muted); }
+
+  /* Contact details */
+  #contact p{ margin:8px 0; color:var(--muted); font-weight:600; }
+  #contact a{ color:var(--accent); text-decoration:none; font-weight:700; }
 
   /* Footer */
   footer{
-    background: linear-gradient(135deg,#2c5364,#203a43,#0f2027);
-    color:white;
     text-align:center;
-    padding:15px;
-    margin-top:40px;
+    padding:18px;
+    margin-top:28px;
+    border-radius:8px;
+    color:rgba(17,24,39,0.7);
+    font-size:14px;
   }
 
-  /* Lightbox Styles */
-  .lightbox {
-    display: none;
-    position: fixed;
-    z-index: 9999;
-    padding-top: 60px;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background: rgba(0,0,0,0.9);
+  /* Lightbox */
+  .lightbox{
+    display:none;
+    position:fixed;
+    inset:0;
+    background: rgba(3,8,15,0.75);
+    z-index:120;
+    align-items:center;
+    justify-content:center;
+    padding:24px;
+    transition:opacity .28s ease, transform .28s ease;
   }
-  .lightbox-content {
-    margin: auto;
-    display: block;
-    max-width: 90%;
-    max-height: 80%;
-    border-radius: 10px;
+  .lightbox.show{ display:flex; }
+  .lightbox-content{
+    max-width:100%;
+    max-height:86vh;
+    border-radius:12px;
+    box-shadow: 0 20px 60px rgba(3,8,15,0.6);
+    transform:scale(.98);
+    transition: transform .28s cubic-bezier(.2,.9,.2,1);
   }
-  .close {
-    position: absolute;
-    top: 15px;
-    right: 25px;
-    color: white;
-    font-size: 35px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-  .close:hover {
-    color: #ff4444;
+  .lightbox.show .lightbox-content{ transform:scale(1); }
+
+  .close{
+    position:absolute;
+    top:18px;
+    right:22px;
+    color:white;
+    font-size:34px;
+    cursor:pointer;
+    font-weight:700;
+    line-height:1;
+    text-shadow: 0 6px 18px rgba(0,0,0,0.6);
   }
 
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    header img {
-      width:160px;
-      height:160px;
-    }
-    nav a {
-      display: inline-block;
-      margin:8px;
-      font-size:14px;
-    }
-    section {
-      padding:25px 15px;
-    }
-    .skills {
-      gap:8px;
-    }
-    .skill {
-      font-size:12px;
-      padding:6px 12px;
-    }
-    .card img {
-      height:180px;
-    }
+  /* Back to top */
+  #backTop{
+    position:fixed;
+    right:18px;
+    bottom:18px;
+    width:48px;
+    height:48px;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:linear-gradient(180deg,#0f4b63,#1b6a8a);
+    color:white;
+    box-shadow:0 12px 30px rgba(7,20,30,0.35);
+    cursor:pointer;
+    z-index:90;
+    transform:translateY(20px);
+    opacity:0;
+    transition:all 260ms ease;
+  }
+  #backTop.show{ transform:translateY(0); opacity:1; }
+
+  /* Responsive */
+  @media (max-width:980px){
+    .about-skills{ grid-template-columns: 1fr; }
+    header.container{ flex-direction:row; gap:12px; }
+    nav.main-nav{ display:flex; gap:8px; flex-wrap:wrap; }
+    header img{ width:80px; height:80px; }
+  }
+  @media (max-width:640px){
+    header{ padding:16px; }
+    header img{ width:68px; height:68px; }
+    header h1{ font-size:16px; }
+    nav.main-nav a{ font-size:13px; padding:8px; }
+    .card .thumb{ height:160px; }
+  }
+  @media (max-width:420px){
+    .card{ padding:14px; border-radius:12px; }
+    .card .thumb{ height:140px; }
   }
 
-  @media (max-width: 480px) {
-    header h1 {
-      font-size:1.5rem;
-    }
-    header p {
-      font-size:0.9rem;
-    }
-    nav {
-      display:flex;
-      flex-wrap:wrap;
-      justify-content:center;
-    }
-    nav a {
-      margin:5px;
-      font-size:13px;
-    }
-    .card img {
-      height:160px;
-    }
+  /* subtle entrance animations (will be toggled with JS) */
+  .reveal{
+    opacity:0;
+    transform: translateY(12px) scale(0.995);
+    transition:opacity 520ms cubic-bezier(.2,.9,.2,1), transform 520ms cubic-bezier(.2,.9,.2,1);
   }
+  .reveal.visible{
+    opacity:1;
+    transform: translateY(0) scale(1);
+  }
+
+  /* small accessibility focus styles */
+  a:focus, button:focus{ outline:3px solid rgba(43,144,191,0.18); outline-offset:3px; border-radius:8px; }
 </style>
 </head>
 <body>
 
   <!-- Header -->
-  <header>
-    <img src="IMG-20250711-WA0006.jpg" alt="Pavan Begari">
-    <h1>Pavan Begari</h1>
-    <p>Data Analyst @Tata Consultancy Services | SQL | Python | Excel | Tableau | Data Analysis</p>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#certifications">Certifications</a>
-      <a href="#projects">Projects</a>
-      <a href="#education">Education</a>
-      <a href="#contact">Contact</a>
-    </nav>
+  <header id="siteHeader">
+    <div class="container" style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;">
+      <div class="brand-left" style="align-items:center;">
+        <img src="IMG-20250711-WA0006.jpg" alt="Pavan Begari">
+        <div>
+          <h1>Pavan Begari</h1>
+          <p>Data Analyst @Tata Consultancy Services · SQL · Python · Tableau</p>
+        </div>
+      </div>
+
+      <nav class="main-nav" aria-label="Main Navigation">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#certifications">Certifications</a>
+        <a href="#projects">Projects</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
   </header>
 
-  <!-- About + Skills -->
-  <section class="about-skills">
-    <div class="card" id="about">
-      <h2>About Me</h2>
-      <p>Analytical and insightful Data Analyst known for productivity and efficiency in task completion. Specialize in data visualization, statistical analysis, and predictive modeling. Excel in problem-solving, critical thinking, and communication, ensuring successful project outcomes and team collaboration.</p>
-    </div>
-    <div class="card" id="skills">
-      <h2>Skills</h2>
-      <div class="skills">
-        <div class="skill">SQL (MySQL, PostgreSQL)</div>
-        <div class="skill">PL SQL</div>
-        <div class="skill">Tableau</div>
-        <div class="skill">Python</div>
-        <div class="skill">Microsoft Excel</div>
-        <div class="skill">AWS (Amazon Web Services)</div>
-        <div class="skill">Git & GitHub</div>
-        <div class="skill">Informatica</div>
+  <main>
+    <!-- About + Skills -->
+    <section class="about-skills" id="intro">
+      <div class="card reveal" id="about">
+        <h2>About Me</h2>
+        <p>Analytical and insightful Data Analyst known for productivity and efficiency in task completion. Specialize in data visualization, statistical analysis, and predictive modeling. Excel in problem-solving, critical thinking, and communication, ensuring successful project outcomes and team collaboration.</p>
       </div>
-    </div>
-  </section>
 
-  <!-- Certifications -->
-  <section id="certifications">
-    <h2>Certifications</h2>
-    <div class="grid">
-      <div class="card">
-        <img src="SQL_Basic_certificate.png" alt="SQL Basic">
-        <h3>HackerRank SQL (Basic)</h3>
-      </div>
-      <div class="card">
-        <img src="SQL_Intermediate_certificate.png" alt="SQL Intermediate">
-        <h3>HackerRank SQL (Intermediate)</h3>
-      </div>
-      <div class="card">
-        <img src="SQL_Advanced_certificate.png" alt="SQL Advanced">
-        <h3>HackerRank SQL (Advanced)</h3>
-      </div>
-      <div class="card">
-        <img src="cert_gcloud.png" alt="Google Cloud">
-        <h3>Google Cloud – Generative AI Leader</h3>
-      </div>
-      <div class="card">
-        <img src="AWS cloud certification.png" alt="AWS Certified Cloud Practitioner">
-        <h3>AWS Certified Cloud Practitioner</h3>
-      </div>
-    </div>
-  </section>
+      <aside class="card reveal" id="skills">
+        <h2>Skills</h2>
+        <div class="skills" aria-hidden="false" role="list">
+          <div class="skill" role="listitem">SQL (MySQL, PostgreSQL)</div>
+          <div class="skill">PL SQL</div>
+          <div class="skill">Tableau</div>
+          <div class="skill">Python</div>
+          <div class="skill">Microsoft Excel</div>
+          <div class="skill">AWS (Amazon Web Services)</div>
+          <div class="skill">Git &amp; GitHub</div>
+          <div class="skill">Informatica</div>
+        </div>
+      </aside>
+    </section>
 
-  <!-- Projects / Dashboards -->
-  <section id="projects">
-    <h2>Projects</h2>
-    <div class="grid">
-      <div class="card">
-        <img src="FNP Sales Project Screenshot.png" alt="Ferns & Petals Dashboard" class="zoom-img">
-        <h3>Ferns & Petals Sales Dashboard</h3>
-        <p>Analyzed sales data across occasions, customers, and products to identify trends, top revenue drivers, and customer spending behavior.</p>
-      </div>
-      <div class="card">
-        <img src="Road Accidents .png" alt="Road Accident Analysis Dashboard" class="zoom-img">
-        <h3>Road Accident Analysis Dashboard</h3>
-        <p>Examined accident data (2021–22) by road type, severity, and time trends to uncover high-risk conditions and locations.</p>
-      </div>
-      <div class="card">
-        <img src="call center data screen shot.png" alt="Call Center Performance Dashboard" class="zoom-img">
-        <h3>Call Center Performance Dashboard</h3>
-        <p>Tracked call volumes, revenue, and agent KPIs to evaluate productivity and customer satisfaction.</p>
-      </div>
-      <div class="card">
-        <img src="Vrinda store annual report.png" alt="Retail Store Sales Dashboard" class="zoom-img">
-        <h3>Retail Store Sales Dashboard</h3>
-        <p>Monitored annual sales by gender, state, and channel, highlighting customer purchase behavior and seasonal trends.</p>
-      </div>
-    </div>
-  </section>
+    <!-- Certifications -->
+    <section id="certifications" class="reveal">
+      <h2>Certifications</h2>
+      <div class="grid" style="margin-top:12px;">
+        <div class="card">
+          <div class="thumb" tabindex="0" data-src="SQL_Basic_certificate.png" title="SQL Basic">
+            <img src="SQL_Basic_certificate.png" alt="SQL Basic Certificate">
+            <div class="tag">HackerRank</div>
+          </div>
+          <h3>HackerRank SQL (Basic)</h3>
+        </div>
 
-  <!-- Education -->
-  <section id="education">
-    <h2>Education</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Bachelor of Technology (Mechanical Engineering)</h3>
-        <p>B V Raju Institute of Technology, Narsapur (05/2023)</p>
-      </div>
-    </div>
-  </section>
+        <div class="card">
+          <div class="thumb" tabindex="0" data-src="SQL_Intermediate_certificate.png" title="SQL Intermediate">
+            <img src="SQL_Intermediate_certificate.png" alt="SQL Intermediate Certificate">
+            <div class="tag">HackerRank</div>
+          </div>
+          <h3>HackerRank SQL (Intermediate)</h3>
+        </div>
 
-  <!-- Contact -->
-  <section id="contact">
-    <h2>Contact</h2>
-    <p>Mobile: 8688656575</p>
-    <p>Email: <a href="mailto:begaripavan2@gmail.com">begaripavan2@gmail.com</a></p>
-    <p>LinkedIn: <a href="https://linkedin.com/in/begari-pavan-kumar-6b40b322b" target="_blank">linkedin.com/in/begari-pavan-kumar-6b40b322b</a></p>
-    <p>GitHub: <a href="https://github.com/pavanbegari1" target="_blank">github.com/pavanbegari1</a></p>
-  </section>
+        <div class="card">
+          <div class="thumb" tabindex="0" data-src="SQL_Advanced_certificate.png" title="SQL Advanced">
+            <img src="SQL_Advanced_certificate.png" alt="SQL Advanced Certificate">
+            <div class="tag">HackerRank</div>
+          </div>
+          <h3>HackerRank SQL (Advanced)</h3>
+        </div>
+
+        <div class="card">
+          <div class="thumb" tabindex="0" data-src="cert_gcloud.png" title="Google Cloud">
+            <img src="cert_gcloud.png" alt="Google Cloud Certificate">
+            <div class="tag">Google Cloud</div>
+          </div>
+          <h3>Google Cloud – Generative AI Leader</h3>
+        </div>
+
+        <div class="card">
+          <div class="thumb" tabindex="0" data-src="AWS cloud certification.png" title="AWS">
+            <img src="AWS cloud certification.png" alt="AWS Certified Cloud Practitioner">
+            <div class="tag">AWS</div>
+          </div>
+          <h3>AWS Certified Cloud Practitioner</h3>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects / Dashboards -->
+    <section id="projects" class="reveal">
+      <h2>Projects</h2>
+      <div class="grid" style="margin-top:12px;">
+        <div class="card">
+          <div class="thumb zoom-img" tabindex="0" data-src="FNP Sales Project Screenshot.png" title="Ferns & Petals Dashboard">
+            <img src="FNP Sales Project Screenshot.png" alt="Ferns & Petals Dashboard" class="zoom-img">
+          </div>
+          <h3>Ferns & Petals Sales Dashboard</h3>
+          <p>Analyzed sales data across occasions, customers, and products to identify trends, top revenue drivers, and customer spending behavior.</p>
+        </div>
+
+        <div class="card">
+          <div class="thumb zoom-img" tabindex="0" data-src="Road Accidents .png" title="Road Accident Analysis Dashboard">
+            <img src="Road Accidents .png" alt="Road Accident Analysis Dashboard" class="zoom-img">
+          </div>
+          <h3>Road Accident Analysis Dashboard</h3>
+          <p>Examined accident data (2021–22) by road type, severity, and time trends to uncover high-risk conditions and locations.</p>
+        </div>
+
+        <div class="card">
+          <div class="thumb zoom-img" tabindex="0" data-src="call center data screen shot.png" title="Call Center Performance Dashboard">
+            <img src="call center data screen shot.png" alt="Call Center Performance Dashboard" class="zoom-img">
+          </div>
+          <h3>Call Center Performance Dashboard</h3>
+          <p>Tracked call volumes, revenue, and agent KPIs to evaluate productivity and customer satisfaction.</p>
+        </div>
+
+        <div class="card">
+          <div class="thumb zoom-img" tabindex="0" data-src="Vrinda store annual report.png" title="Retail Store Sales Dashboard">
+            <img src="Vrinda store annual report.png" alt="Retail Store Sales Dashboard" class="zoom-img">
+          </div>
+          <h3>Retail Store Sales Dashboard</h3>
+          <p>Monitored annual sales by gender, state, and channel, highlighting customer purchase behavior and seasonal trends.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education" class="reveal">
+      <h2>Education</h2>
+      <div class="grid" style="margin-top:12px;">
+        <div class="card">
+          <h3>Bachelor of Technology (Mechanical Engineering)</h3>
+          <p>B V Raju Institute of Technology, Narsapur (05/2023)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="reveal">
+      <h2>Contact</h2>
+      <div class="grid" style="margin-top:12px;">
+        <div class="card">
+          <p><strong>Mobile:</strong> 8688656575</p>
+          <p><strong>Email:</strong> <a href="mailto:begaripavan2@gmail.com">begaripavan2@gmail.com</a></p>
+          <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/begari-pavan-kumar-6b40b322b" target="_blank" rel="noopener">linkedin.com/in/begari-pavan-kumar-6b40b322b</a></p>
+          <p><strong>GitHub:</strong> <a href="https://github.com/pavanbegari1" target="_blank" rel="noopener">github.com/pavanbegari1</a></p>
+        </div>
+      </div>
+    </section>
+
+  </main>
 
   <!-- Footer -->
   <footer>
@@ -354,42 +547,131 @@
   </footer>
 
   <!-- Lightbox Modal -->
-  <div id="lightbox" class="lightbox">
-    <span class="close">&times;</span>
-    <img class="lightbox-content" id="lightbox-img">
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-hidden="true">
+    <button class="close" aria-label="Close lightbox">&times;</button>
+    <img id="lightbox-img" class="lightbox-content" alt="Expanded image">
   </div>
 
+  <!-- Back to top -->
+  <button id="backTop" aria-label="Back to top" title="Back to top">↑</button>
+
 <script>
-  // Lightbox
-  const lightbox = document.getElementById("lightbox");
-  const lightboxImg = document.getElementById("lightbox-img");
-  const closeBtn = document.querySelector(".close");
+  // Smooth reveal for elements
+  document.addEventListener('DOMContentLoaded', () => {
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, {threshold: 0.08});
+    reveals.forEach(el => io.observe(el));
 
-  document.querySelectorAll(".zoom-img").forEach(img => {
-    img.addEventListener("click", () => {
-      lightbox.style.display = "block";
-      lightboxImg.src = img.src;
-      lightboxImg.alt = img.alt;
+    // Header shrink on scroll
+    const header = document.getElementById('siteHeader');
+    let lastScroll = 0;
+    window.addEventListener('scroll', () => {
+      const sc = window.scrollY;
+      if(sc > 60){
+        header.classList.add('shrink');
+      } else {
+        header.classList.remove('shrink');
+      }
+
+      // Back to top
+      const back = document.getElementById('backTop');
+      if(sc > 420) back.classList.add('show'); else back.classList.remove('show');
     });
-  });
 
-  closeBtn.onclick = function() {
-    lightbox.style.display = "none";
-  }
+    // Active nav link using IntersectionObserver
+    const sections = document.querySelectorAll('main section, main .about-skills');
+    const navLinks = document.querySelectorAll('nav.main-nav a');
+    const navMap = {};
+    navLinks.forEach(a => { const id = a.getAttribute('href'); if(id) navMap[id] = a; });
 
-  window.onclick = function(event) {
-    if (event.target == lightbox) {
-      lightbox.style.display = "none";
+    const secObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          const id = '#' + entry.target.id;
+          if(navMap[id]){
+            navLinks.forEach(n=>n.classList.remove('active'));
+            navMap[id].classList.add('active');
+          }
+        }
+      });
+    }, {threshold:0.45});
+
+    sections.forEach(s => {
+      if(s.id) secObserver.observe(s);
+    });
+
+    // Lightbox behavior
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const closeBtn = lightbox.querySelector('.close');
+
+    function openLightbox(src, alt){
+      lightboxImg.src = src;
+      lightboxImg.alt = alt || 'Expanded image';
+      lightbox.classList.add('show');
+      lightbox.setAttribute('aria-hidden','false');
+      document.body.style.overflow = 'hidden';
+      setTimeout(()=> lightboxImg.style.opacity = 1, 40);
     }
-  }
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape") {
-      lightbox.style.display = "none";
+    function closeLightbox(){
+      lightbox.classList.remove('show');
+      lightbox.setAttribute('aria-hidden','true');
+      document.body.style.overflow = '';
+      lightboxImg.src = '';
     }
+
+    // click on any .thumb or .zoom-img to open (keeps file paths same)
+    document.querySelectorAll('.thumb, .zoom-img').forEach(el => {
+      el.addEventListener('click', (e) => {
+        const src = el.dataset && el.dataset.src ? el.dataset.src : (el.querySelector && el.querySelector('img') ? el.querySelector('img').src : null);
+        const alt = el.getAttribute('title') || (el.querySelector && el.querySelector('img') ? el.querySelector('img').alt : '');
+        if(src) openLightbox(src, alt);
+      });
+      // keyboard accessibility
+      el.addEventListener('keydown', (ev) => {
+        if(ev.key === 'Enter' || ev.key === ' ') {
+          ev.preventDefault();
+          const src = el.dataset && el.dataset.src ? el.dataset.src : (el.querySelector && el.querySelector('img') ? el.querySelector('img').src : null);
+          const alt = el.getAttribute('title') || (el.querySelector && el.querySelector('img') ? el.querySelector('img').alt : '');
+          if(src) openLightbox(src, alt);
+        }
+      });
+    });
+
+    closeBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => {
+      if(e.target === lightbox) closeLightbox();
+    });
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'Escape') closeLightbox();
+    });
+
+    // Back to top
+    document.getElementById('backTop').addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+    // Make nav links close focus on click for mobile ergonomics
+    document.querySelectorAll('nav.main-nav a').forEach(a=>{
+      a.addEventListener('click', ()=> a.blur());
+    });
+
+    // Improve image loading: if an image has whitespace in filename use decodeURI when opening
+    document.querySelectorAll('.thumb, .zoom-img').forEach(el=>{
+      const ds = el.getAttribute('data-src');
+      if(!ds && el.querySelector('img')){
+        // populate dataset so other code can use it
+        el.dataset.src = el.querySelector('img').getAttribute('src');
+      }
+    });
+
   });
 </script>
 
 </body>
 </html>
-
