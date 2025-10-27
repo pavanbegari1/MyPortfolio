@@ -1,70 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pavan Begari Portfolio</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Pavan Begari — Portfolio</title>
+
+<!-- Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
 <style>
-  body{margin:0;font-family:"Segoe UI",sans-serif;background:#0b0f19;color:#e6e6e6;line-height:1.6}
-  header{background:linear-gradient(135deg,#041b4b,#0b5ba8,#041b4b);color:white;padding:3rem 1rem 2rem 1rem;text-align:center;box-shadow:0 4px 25px rgba(0,0,0,0.6)}
-  header img{width:200px;height:200px;border-radius:50%;border:5px solid rgba(255,255,255,0.9);box-shadow:0 0 40px rgba(0,153,255,0.8);object-fit:cover;margin-bottom:15px}
-  header h1{margin:10px 0 5px 0;font-size:2rem}
-  header p{margin:8px 0 18px 0;font-size:1rem;font-weight:bold;letter-spacing:0.5px}
-  nav{margin-top:18px}
-  nav a{color:#b9d9ff;margin:0 18px;text-decoration:none;font-weight:bold;font-size:1rem;position:relative}
-  nav a::after{content:"";position:absolute;width:0;height:2px;left:0;bottom:-4px;background:#00d9ff;transition:0.3s}
-  nav a:hover{color:#00eaff}
-  nav a:hover::after{width:100%}
-
-  section{padding:50px 20px;max-width:1200px;margin:auto}
-  h2{color:#00d9ff;border-bottom:3px solid #008cff;display:inline-block;margin-bottom:25px}
-
-  .about-skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
-  .about-skills .card{background:rgba(255,255,255,0.05);border-radius:14px;padding:22px;backdrop-filter:blur(10px);box-shadow:0 4px 18px rgba(0,0,0,0.4);transition:0.4s}
-  .about-skills .card:hover{transform:translateY(-6px);box-shadow:0 0 22px #00c8ff}
-
-  .skills{display:flex;flex-wrap:wrap;gap:10px}
-  .skill{background:linear-gradient(135deg,#008cff,#00eaff);color:white;padding:8px 15px;border-radius:20px;font-weight:bold;font-size:14px;transition:0.3s}
-  .skill:hover{transform:scale(1.1)}
-
-  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
-  .card{background:rgba(255,255,255,0.05);border-radius:12px;box-shadow:0 4px 18px rgba(0,0,0,0.45);padding:18px;transition:0.4s}
-  .card:hover{transform:translateY(-7px) scale(1.02);box-shadow:0 0 25px #00c8ff}
-  .card img{width:100%;height:210px;object-fit:cover;border-radius:10px;margin-bottom:12px;cursor:pointer;transition:0.3s}
-  .card img:hover{filter:brightness(1.15)}
-
-  .card h3{margin:10px 0;font-size:1.1rem;color:#6ad8ff}
-  .card p{font-size:0.94rem;color:#d9d9d9}
-
-  #contact p{margin:6px 0;font-size:1rem}
-  #contact a{color:#4cc9ff;font-weight:bold;text-decoration:none}
-  #contact a:hover{color:#00eaff}
-
-  footer{background:linear-gradient(135deg,#041b4b,#0b5ba8,#041b4b);color:white;text-align:center;padding:15px;margin-top:50px;font-size:0.95rem}
-
-  .lightbox{display:none;position:fixed;z-index:9999;padding-top:60px;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.9)}
-  .lightbox-content{margin:auto;display:block;max-width:90%;max-height:80%;border-radius:10px}
-  .close{position:absolute;top:15px;right:25px;color:white;font-size:35px;font-weight:bold;cursor:pointer}
-  .close:hover{color:#ff4444}
-
-  @media(max-width:768px){
-    header img{width:160px;height:160px}
-    nav a{display:inline-block;margin:8px;font-size:14px}
-    section{padding:30px 18px}
+  :root{
+    --bg-1: rgba(6,12,28,1);
+    --bg-2: rgba(12,22,44,1);
+    --glass: rgba(255,255,255,0.06);
+    --glass-2: rgba(255,255,255,0.04);
+    --accent-1: #4dd0e1; /* cyan */
+    --accent-2: #7c4dff; /* purple */
+    --muted: #c3d3df;
+    --card-radius: 16px;
+    --shadow-1: 0 12px 40px rgba(4,10,30,0.6);
+    --glass-border: rgba(255,255,255,0.06);
+    --glass-highlight: rgba(255,255,255,0.02);
   }
-  @media(max-width:480px){
-    header h1{font-size:1.5rem}
-    nav a{margin:4px;font-size:13px}
+
+  html,body{height:100%;margin:0;font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,Arial;color:var(--muted);background:linear-gradient(180deg,var(--bg-1),var(--bg-2));-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;}
+
+  /* PARTICLE CANVAS is full-screen behind content */
+  #particle-canvas{position:fixed;inset:0;z-index:0;pointer-events:none;filter:blur(0px);}
+
+  /* Header / Hero */
+  header.hero{
+    position:relative;
+    z-index:10;
+    max-width:1200px;
+    margin:32px auto 18px auto;
+    padding:28px;
+    display:flex;
+    align-items:center;
+    gap:22px;
+    backdrop-filter: blur(10px) saturate(120%);
+    background: linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border:1px solid var(--glass-border);
+    box-shadow: var(--shadow-1);
+    border-radius:22px;
+    overflow:clip;
+  }
+
+  .hero-left{display:flex;align-items:center;gap:18px;min-width:0}
+  .avatar{
+    width:120px;height:120px;border-radius:20px;overflow:hidden;flex:0 0 120px;
+    border:1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 24px rgba(124,77,255,0.06) inset;
+  }
+  .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+
+  .hero-title{
+    min-width:0;
+  }
+  .hero-title h1{
+    margin:0;font-size:22px;color:#ffffff;font-weight:700;
+    letter-spacing:0.2px;
+    display:flex;align-items:center;gap:12px;
+  }
+  .hero-title p.lead{
+    margin:6px 0 0 0;color:var(--muted);font-weight:500;font-size:13px;
+  }
+
+  .typing{
+    display:inline-block;
+    color:var(--accent-1);
+    font-weight:700;
+    margin-left:6px;
+  }
+
+  nav.top-nav{
+    margin-left:auto;
+    display:flex;
+    gap:10px;
+    align-items:center;
+  }
+  nav.top-nav a{
+    color:rgba(255,255,255,0.88);
+    text-decoration:none;
+    padding:8px 12px;
+    border-radius:10px;
+    font-weight:600;
+    font-size:13px;
+    transition:all .22s ease;
+    position:relative;
+  }
+  nav.top-nav a::after{
+    content:"";position:absolute;left:10px;right:10px;height:3px;bottom:4px;border-radius:3px;background:transparent;transition:all .22s ease;
+  }
+  nav.top-nav a:hover{transform:translateY(-4px);color:#fff}
+  nav.top-nav a.active{background:linear-gradient(90deg, rgba(77,208,225,0.08), rgba(124,77,255,0.06));}
+
+  /* Hero stats tiles */
+  .stats{
+    display:flex;
+    gap:12px;
+    margin-top:12px;
+    align-items:center;
+  }
+  .stat-tile{
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border-radius:12px;padding:10px 14px;border:1px solid var(--glass-border);min-width:98px;text-align:center;
+    box-shadow: 0 8px 30px rgba(4,10,30,0.45);
+  }
+  .stat-tile strong{display:block;font-size:18px;color:#fff}
+  .stat-tile span{display:block;font-size:12px;color:var(--muted);margin-top:4px}
+
+  /* Main content area */
+  main{position:relative;z-index:10;max-width:1200px;margin:22px auto;padding:10px;}
+
+  section{margin-bottom:32px;padding:6px 0}
+  h2{
+    margin:0 0 14px 0;font-size:20px;color:linear-gradient(90deg,var(--accent-1),var(--accent-2));font-weight:700;position:relative;
+  }
+  h2 .bar{display:block;height:4px;width:80px;border-radius:8px;margin-top:8px;background:linear-gradient(90deg,var(--accent-1),var(--accent-2));}
+
+  /* About + Skills grid */
+  .about-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+  .glass-card{
+    padding:18px;border-radius:var(--card-radius);background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    border:1px solid var(--glass-border);backdrop-filter: blur(8px) saturate(120%);
+    box-shadow: 0 12px 36px rgba(4,10,30,0.6);transition:transform .36s cubic-bezier(.2,.9,.2,1),box-shadow .36s;
+  }
+  .glass-card:hover{transform:translateY(-8px);box-shadow:0 22px 48px rgba(4,10,30,0.7)}
+
+  .about-text{color:var(--muted);font-size:15px;line-height:1.55}
+  .skills-list{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+  .pill{
+    padding:8px 12px;border-radius:999px;font-weight:600;font-size:13px;background:linear-gradient(90deg,rgba(77,208,225,0.12), rgba(124,77,255,0.10));
+    border:1px solid rgba(255,255,255,0.03);color:#eaf8fb;backdrop-filter:blur(6px);
+  }
+
+  /* Grid cards for certs/projects */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+  .project{
+    border-radius:14px;padding:12px;border:1px solid var(--glass-border);background:linear-gradient(180deg, rgba(255,255,255,0.018), rgba(255,255,255,0.01));
+    box-shadow:0 10px 30px rgba(2,6,20,0.6);transition:transform .36s cubic-bezier(.2,.9,.2,1),box-shadow .36s;
+    transform-style:preserve-3d;will-change:transform;
+    overflow:hidden;
+  }
+  .project:hover{transform:translateY(-10px) rotateX(2deg) rotateY(-2deg);box-shadow:0 28px 60px rgba(2,6,20,0.7)}
+  .thumb{height:180px;border-radius:12px;overflow:hidden;border:1px solid rgba(255,255,255,0.02);position:relative}
+  .thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s cubic-bezier(.2,.9,.2,1)}
+  .project:hover .thumb img{transform:scale(1.05) rotate(-0.6deg)}
+  .project h3{margin:10px 0 6px 0;color:#fff;font-size:16px}
+  .project p{margin:0;color:var(--muted);font-size:14px}
+
+  /* Education timeline */
+  .timeline{position:relative;padding-left:18px}
+  .timeline::before{content:"";position:absolute;left:6px;top:6px;bottom:6px;width:2px;background:linear-gradient(180deg,var(--accent-1),var(--accent-2));border-radius:2px;opacity:0.9}
+  .tl-item{position:relative;padding:12px 12px 12px 22px;margin-bottom:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.008));border-radius:12px;border:1px solid rgba(255,255,255,0.02)}
+  .tl-dot{position:absolute;left:-4px;top:18px;width:12px;height:12px;border-radius:50%;background:linear-gradient(90deg,var(--accent-1),var(--accent-2));box-shadow:0 6px 18px rgba(124,77,255,0.14)}
+  .tl-item h4{margin:0;color:#fff}
+  .tl-item p{margin:6px 0 0 0;color:var(--muted);font-size:14px}
+
+  /* Contact card */
+  .contact-card{display:flex;flex-direction:column;gap:8px}
+
+  a.link{color:var(--accent-1);text-decoration:none;font-weight:700}
+  a.link:hover{text-decoration:underline}
+
+  /* Back to top */
+  #backTop{position:fixed;right:18px;bottom:18px;z-index:50;background:linear-gradient(90deg,var(--accent-1),var(--accent-2));border:none;color:#021528;padding:10px 12px;border-radius:12px;cursor:pointer;box-shadow:0 10px 30px rgba(77,208,225,0.08);display:none}
+
+  /* Lightbox */
+  .lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.8);align-items:center;justify-content:center;z-index:60}
+  .lightbox img{max-width:92%;max-height:86vh;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,0.7)}
+  .lightbox .close{position:absolute;top:20px;right:28px;color:#fff;font-size:30px;font-weight:700;cursor:pointer}
+
+  /* reveal animation (smooth & elegant) */
+  .reveal{opacity:0;transform:translateY(12px) scale(.995);transition:opacity .68s cubic-bezier(.2,.9,.2,1),transform .68s cubic-bezier(.2,.9,.2,1)}
+  .reveal.visible{opacity:1;transform:none}
+
+  @media (max-width:960px){
+    .hero{flex-direction:column;align-items:flex-start;padding:18px}
+    nav.top-nav{margin-left:0;align-self:stretch;display:flex;flex-wrap:wrap;gap:8px}
+    .about-grid{grid-template-columns:1fr}
+    .stats{flex-wrap:wrap}
+    .thumb{height:160px}
+  }
+  @media (max-width:480px){
+    .avatar{width:92px;height:92px;flex:0 0 92px}
+    .hero-left{gap:12px}
+    .thumb{height:140px}
+    header.hero{padding:14px}
   }
 </style>
 </head>
 <body>
 
-<header>
-  <img src="IMG-20250711-WA0006.jpg" alt="Pavan Begari">
-  <h1>Pavan Begari</h1>
-  <p>Data Analyst @TCS | SQL | Python | Excel | Tableau | AWS</p>
-  <nav>
+<!-- Particle canvas -->
+<canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+<!-- Header / Hero -->
+<header class="hero" role="banner">
+  <div class="hero-left">
+    <div class="avatar">
+      <img src="IMG-20250711-WA0006.jpg" alt="Pavan Begari">
+    </div>
+    <div class="hero-title">
+      <h1>
+        Pavan Begari
+        <span class="typing" id="typing"></span>
+      </h1>
+      <p class="lead">Data Analyst @ Tata Consultancy Services · SQL · Python · Tableau</p>
+
+      <div class="stats" aria-hidden="false">
+        <div class="stat-tile">
+          <strong id="stat-years">0</strong>
+          <span>Years Experience</span>
+        </div>
+        <div class="stat-tile">
+          <strong id="stat-projects">0</strong>
+          <span>Projects</span>
+        </div>
+        <div class="stat-tile">
+          <strong id="stat-certs">0</strong>
+          <span>Certifications</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="top-nav" role="navigation" aria-label="Main navigation">
     <a href="#about">About</a>
     <a href="#skills">Skills</a>
     <a href="#certifications">Certifications</a>
@@ -74,77 +236,316 @@
   </nav>
 </header>
 
-<section class="about-skills">
-  <div class="card" id="about">
-    <h2>About Me</h2>
-    <p>Analytical and insightful Data Analyst known for productivity and efficiency in task completion. Specialized in data visualization, statistical analysis, and predictive modeling.</p>
-  </div>
-  <div class="card" id="skills">
-    <h2>Skills</h2>
-    <div class="skills">
-      <div class="skill">SQL</div><div class="skill">PL SQL</div><div class="skill">Tableau</div>
-      <div class="skill">Python</div><div class="skill">Excel</div><div class="skill">AWS</div>
-      <div class="skill">Git & GitHub</div><div class="skill">Informatica</div>
+<main role="main">
+  <section id="about" class="reveal">
+    <h2>About Me <span class="bar"></span></h2>
+    <div class="about-grid">
+      <div class="glass-card about-text">
+        <p>Analytical and insightful Data Analyst known for productivity and efficiency in task completion. Specialize in data visualization, statistical analysis, and predictive modeling. I build dashboards that help stakeholders make data-driven decisions and automate repetitive reporting tasks.</p>
+        <p style="margin-top:12px;color:var(--muted)">Core strengths: problem-solving, communication, stakeholder collaboration, and translating business needs into analytics solutions.</p>
+      </div>
+
+      <aside class="glass-card" id="skills" aria-labelledby="skills-h">
+        <h3 id="skills-h" style="margin:0;color:#fff">Skills</h3>
+        <div class="skills-list" style="margin-top:10px">
+          <span class="pill">SQL (MySQL, PostgreSQL)</span>
+          <span class="pill">PL SQL</span>
+          <span class="pill">Tableau</span>
+          <span class="pill">Python</span>
+          <span class="pill">Microsoft Excel</span>
+          <span class="pill">AWS</span>
+          <span class="pill">Git & GitHub</span>
+          <span class="pill">Informatica</span>
+        </div>
+      </aside>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="certifications">
-  <h2>Certifications</h2>
-  <div class="grid">
-    <div class="card"><img src="SQL_Basic_certificate.png"><h3>HackerRank SQL (Basic)</h3></div>
-    <div class="card"><img src="SQL_Intermediate_certificate.png"><h3>HackerRank SQL (Intermediate)</h3></div>
-    <div class="card"><img src="SQL_Advanced_certificate.png"><h3>HackerRank SQL (Advanced)</h3></div>
-    <div class="card"><img src="cert_gcloud.png"><h3>Google Cloud – Generative AI</h3></div>
-    <div class="card"><img src="AWS cloud certification.png"><h3>AWS Cloud Practitioner</h3></div>
-  </div>
-</section>
+  <section id="certifications" class="reveal">
+    <h2>Certifications <span class="bar"></span></h2>
+    <div class="grid" style="margin-top:12px">
+      <div class="project" tabindex="0" data-src="SQL_Basic_certificate.png">
+        <div class="thumb"><img src="SQL_Basic_certificate.png" alt="HackerRank SQL Basic"></div>
+        <h3>HackerRank SQL (Basic)</h3>
+      </div>
 
-<section id="projects">
-  <h2>Projects</h2>
-  <div class="grid">
-    <div class="card"><img src="FNP Sales Project Screenshot.png" class="zoom-img"><h3>Ferns & Petals Dashboard</h3><p>Sales analysis by occasion, customers and product trends.</p></div>
-    <div class="card"><img src="Road Accidents .png" class="zoom-img"><h3>Road Accident Dashboard</h3><p>Severity patterns & accident trend analysis.</p></div>
-    <div class="card"><img src="call center data screen shot.png" class="zoom-img"><h3>Call Center Dashboard</h3><p>Agent performance and customer satisfaction metrics.</p></div>
-    <div class="card"><img src="Vrinda store annual report.png" class="zoom-img"><h3>Retail Store Dashboard</h3><p>Sales trends by gender, state and channel.</p></div>
-  </div>
-</section>
+      <div class="project" tabindex="0" data-src="SQL_Intermediate_certificate.png">
+        <div class="thumb"><img src="SQL_Intermediate_certificate.png" alt="HackerRank SQL Intermediate"></div>
+        <h3>HackerRank SQL (Intermediate)</h3>
+      </div>
 
-<section id="education">
-  <h2>Education</h2>
-  <div class="grid">
-    <div class="card"><h3>B.Tech (Mechanical Engineering)</h3><p>BVRIT (05/2023)</p></div>
-  </div>
-</section>
+      <div class="project" tabindex="0" data-src="SQL_Advanced_certificate.png">
+        <div class="thumb"><img src="SQL_Advanced_certificate.png" alt="HackerRank SQL Advanced"></div>
+        <h3>HackerRank SQL (Advanced)</h3>
+      </div>
 
-<section id="contact">
-  <h2>Contact</h2>
-  <p>Mobile: 8688656575</p>
-  <p>Email: <a href="mailto:begaripavan2@gmail.com">begaripavan2@gmail.com</a></p>
-  <p>LinkedIn: <a href="https://linkedin.com/in/begari-pavan-kumar-6b40b322b" target="_blank">linkedin.com/in/begari-pavan-kumar-6b40b322b</a></p>
-  <p>GitHub: <a href="https://github.com/pavanbegari1" target="_blank">github.com/pavanbegari1</a></p>
-</section>
+      <div class="project" tabindex="0" data-src="cert_gcloud.png">
+        <div class="thumb"><img src="cert_gcloud.png" alt="Google Cloud Generative AI"></div>
+        <h3>Google Cloud – Generative AI Leader</h3>
+      </div>
 
-<footer>
-  <p>© 2025 Pavan Begari. All rights reserved.</p>
+      <div class="project" tabindex="0" data-src="AWS cloud certification.png">
+        <div class="thumb"><img src="AWS cloud certification.png" alt="AWS Certified Cloud Practitioner"></div>
+        <h3>AWS Certified Cloud Practitioner</h3>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="reveal">
+    <h2>Projects <span class="bar"></span></h2>
+    <div class="grid" style="margin-top:12px">
+      <div class="project" tabindex="0" data-src="FNP Sales Project Screenshot.png">
+        <div class="thumb"><img src="FNP Sales Project Screenshot.png" alt="Ferns & Petals Dashboard"></div>
+        <h3>Ferns & Petals Sales Dashboard</h3>
+        <p>Analyzed sales by occasion, customer segments, and product mixes to identify revenue drivers and seasonality.</p>
+      </div>
+
+      <div class="project" tabindex="0" data-src="Road Accidents .png">
+        <div class="thumb"><img src="Road Accidents .png" alt="Road Accident Analysis Dashboard"></div>
+        <h3>Road Accident Analysis Dashboard</h3>
+        <p>Examined accident data (2021–22) by road type, severity and time trends to recommend safety interventions.</p>
+      </div>
+
+      <div class="project" tabindex="0" data-src="call center data screen shot.png">
+        <div class="thumb"><img src="call center data screen shot.png" alt="Call Center Performance Dashboard"></div>
+        <h3>Call Center Performance Dashboard</h3>
+        <p>Tracked call volumes, agent KPIs and customer satisfaction to drive operational improvements.</p>
+      </div>
+
+      <div class="project" tabindex="0" data-src="Vrinda store annual report.png">
+        <div class="thumb"><img src="Vrinda store annual report.png" alt="Retail Store Sales Dashboard"></div>
+        <h3>Retail Store Sales Dashboard</h3>
+        <p>Monitored sales across channels, states and customer segments to highlight growth opportunities.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="education" class="reveal">
+    <h2>Education <span class="bar"></span></h2>
+    <div class="timeline" style="margin-top:12px">
+      <div class="tl-item">
+        <div class="tl-dot" aria-hidden="true"></div>
+        <h4>Bachelor of Technology (Mechanical Engineering)</h4>
+        <p>B V Raju Institute of Technology, Narsapur — (05/2023)</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="reveal">
+    <h2>Contact <span class="bar"></span></h2>
+    <div class="glass-card contact-card">
+      <div><strong>Mobile:</strong> <a class="link" href="tel:+918688656575">8688656575</a></div>
+      <div><strong>Email:</strong> <a class="link" href="mailto:begaripavan2@gmail.com">begaripavan2@gmail.com</a></div>
+      <div><strong>LinkedIn:</strong> <a class="link" href="https://linkedin.com/in/begari-pavan-kumar-6b40b322b" target="_blank" rel="noopener">linkedin.com/in/begari-pavan-kumar-6b40b322b</a></div>
+      <div><strong>GitHub:</strong> <a class="link" href="https://github.com/pavanbegari1" target="_blank" rel="noopener">github.com/pavanbegari1</a></div>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer style="max-width:1200px;margin:22px auto 60px auto;padding:14px;border-radius:12px;text-align:center;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005));border:1px solid rgba(255,255,255,0.02);color:var(--muted)">
+  © 2025 Pavan Begari. All rights reserved.
 </footer>
 
-<div id="lightbox" class="lightbox">
-  <span class="close">&times;</span>
-  <img class="lightbox-content" id="lightbox-img">
+<!-- Lightbox -->
+<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog">
+  <button class="close" id="lightbox-close" aria-label="Close">&times;</button>
+  <img id="lightbox-img" alt="Expanded image">
 </div>
 
-<script>
-  const lightbox=document.getElementById("lightbox");
-  const lightboxImg=document.getElementById("lightbox-img");
-  const closeBtn=document.querySelector(".close");
-  document.querySelectorAll(".zoom-img").forEach(img=>{
-    img.addEventListener("click",()=>{lightbox.style.display="block";lightboxImg.src=img.src;});
-  });
-  closeBtn.onclick=()=>lightbox.style.display="none";
-  window.onclick=e=>{if(e.target==lightbox)lightbox.style.display="none";}
-  document.addEventListener("keydown",e=>{if(e.key==="Escape")lightbox.style.display="none";});
-</script>
+<!-- Back to top -->
+<button id="backTop" aria-label="Back to top" title="Back to top">↑</button>
 
+<script>
+/* ========== Typing Effect (smooth & elegant) ========== */
+(function(){
+  const phrases = ["Data Analyst", "SQL · Python · Tableau", "Dashboard Designer", "Insights & Automation"];
+  const el = document.getElementById('typing');
+  let pi=0, ci=0, forward=true;
+  function tick(){
+    const txt = phrases[pi];
+    if(forward){
+      ci++;
+      el.textContent = txt.slice(0,ci);
+      if(ci===txt.length){ forward=false; setTimeout(tick,900); return; }
+    } else {
+      ci--;
+      el.textContent = txt.slice(0,ci);
+      if(ci===0){ forward=true; pi=(pi+1)%phrases.length; setTimeout(tick,200); return; }
+    }
+    setTimeout(tick, 80);
+  }
+  tick();
+})();
+
+/* ========== Smooth reveal using IntersectionObserver ========== */
+(function(){
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, {threshold:0.12});
+  reveals.forEach(r=>io.observe(r));
+})();
+
+/* ========== Active nav link tracking ========== */
+(function(){
+  const navLinks = document.querySelectorAll('nav.top-nav a');
+  const sections = [...document.querySelectorAll('main section')];
+  const map = new Map(navLinks.map(a => [a.getAttribute('href'), a]));
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{
+      if(en.isIntersecting){
+        navLinks.forEach(n=>n.classList.remove('active'));
+        const a = map.get('#'+en.target.id);
+        if(a) a.classList.add('active');
+      }
+    });
+  }, {threshold:0.45});
+  sections.forEach(s=>io.observe(s));
+  // click behavior - smooth scroll & close focus
+  navLinks.forEach(a=>a.addEventListener('click', (e)=>{ a.blur(); }));
+})();
+
+/* ========== Stats counters (animated) ========== */
+(function(){
+  const counts = [
+    {id:'stat-years', to:2, duration:900}, // years - adjust as desired
+    {id:'stat-projects', to:12, duration:900},
+    {id:'stat-certs', to:5, duration:900}
+  ];
+  function animate(el, to, duration){
+    const start = 0; const startTime = performance.now();
+    function step(now){
+      const t = Math.min(1, (now-startTime)/duration);
+      const val = Math.floor(start + (to-start) * t);
+      el.textContent = val;
+      if(t<1) requestAnimationFrame(step);
+      else el.textContent = to;
+    }
+    requestAnimationFrame(step);
+  }
+  // start when hero is visible
+  const hero = document.querySelector('header.hero');
+  const obs = new IntersectionObserver((entries, o)=>{
+    if(entries[0].isIntersecting){
+      counts.forEach(c=>animate(document.getElementById(c.id), c.to, c.duration));
+      o.unobserve(hero);
+    }
+  }, {threshold:0.2});
+  obs.observe(hero);
+})();
+
+/* ========== Lightbox for images (uses same file paths) ========== */
+(function(){
+  const lightbox = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightbox-img');
+  const lbClose = document.getElementById('lightbox-close');
+  document.querySelectorAll('.project, .project .thumb, .project img').forEach(el=>{
+    el.addEventListener('click', (e)=>{
+      const src = el.dataset && el.dataset.src ? el.dataset.src : (el.querySelector && el.querySelector('img') ? el.querySelector('img').src : (el.src||null));
+      if(!src) return;
+      lbImg.src = src;
+      lightbox.style.display = 'flex';
+      lightbox.setAttribute('aria-hidden','false');
+      document.body.style.overflow='hidden';
+    });
+    el.addEventListener('keydown', (ev)=>{ if(ev.key==='Enter'||ev.key===' ') el.click(); });
+  });
+  lbClose.addEventListener('click', closeLB);
+  lightbox.addEventListener('click', (e)=>{ if(e.target===lightbox) closeLB(); });
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeLB(); });
+  function closeLB(){ lightbox.style.display='none'; lightbox.setAttribute('aria-hidden','true'); lbImg.src=''; document.body.style.overflow=''; }
+})();
+
+/* ========== Back to top button ========== */
+(function(){
+  const btn = document.getElementById('backTop');
+  window.addEventListener('scroll', ()=> {
+    if(window.scrollY > 420) btn.style.display = 'block'; else btn.style.display = 'none';
+  });
+  btn.addEventListener('click', ()=> window.scrollTo({top:0,behavior:'smooth'}));
+})();
+
+/* ========== Subtle parallax tilt for projects on mouse move ========== */
+(function(){
+  const cards = document.querySelectorAll('.project');
+  cards.forEach(card=>{
+    card.addEventListener('mousemove', e=>{
+      const r = card.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width;
+      const py = (e.clientY - r.top) / r.height;
+      const rx = (py - 0.5) * 6; // rotateX
+      const ry = (px - 0.5) * -8; // rotateY
+      card.style.transform = `translateY(-6px) rotateX(${rx}deg) rotateY(${ry}deg)`;
+    });
+    card.addEventListener('mouseleave', ()=> { card.style.transform = ''; });
+  });
+})();
+
+/* ========== Particle background (C1: Neo-Glass smooth particles) ========== */
+(function(){
+  const canvas = document.getElementById('particle-canvas');
+  const ctx = canvas.getContext('2d');
+  let w=canvas.width=innerWidth, h=canvas.height=innerHeight;
+  const opts = {
+    count: Math.max(60, Math.floor((w*h)/7000)),
+    baseSpeed: 0.22,
+    colors: [
+      'rgba(77,208,225,0.12)',
+      'rgba(124,77,255,0.10)',
+      'rgba(255,255,255,0.035)'
+    ],
+    maxRadius: 2.6
+  };
+  let particles = [];
+
+  function rand(min,max){ return Math.random()*(max-min)+min; }
+
+  function init(){
+    w=canvas.width=innerWidth; h=canvas.height=innerHeight;
+    particles = [];
+    for(let i=0;i<opts.count;i++){
+      particles.push({
+        x: Math.random()*w,
+        y: Math.random()*h,
+        r: rand(0.6, opts.maxRadius),
+        vx: rand(-opts.baseSpeed, opts.baseSpeed),
+        vy: rand(-opts.baseSpeed, opts.baseSpeed*0.9),
+        c: opts.colors[Math.floor(Math.random()*opts.colors.length)],
+        tw: Math.random()*Math.PI*2,
+        amp: rand(0.2,0.9)
+      });
+    }
+  }
+
+  function step(t){
+    ctx.clearRect(0,0,w,h);
+    for(const p of particles){
+      p.x += p.vx + Math.sin(p.tw + t*0.0004)*0.12*p.amp;
+      p.y += p.vy + Math.cos(p.tw + t*0.0003)*0.08*p.amp;
+      p.tw += 0.002;
+      if(p.x < -10) p.x = w+10;
+      if(p.x > w+10) p.x = -10;
+      if(p.y < -10) p.y = h+10;
+      if(p.y > h+10) p.y = -10;
+      ctx.beginPath();
+      const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, Math.max(2, p.r*8));
+      g.addColorStop(0, p.c);
+      g.addColorStop(1, 'rgba(0,0,0,0)');
+      ctx.fillStyle = g;
+      ctx.arc(p.x, p.y, Math.max(1, p.r*2), 0, Math.PI*2);
+      ctx.fill();
+    }
+    requestAnimationFrame(step);
+  }
+
+  init();
+  requestAnimationFrame(step);
+  addEventListener('resize', ()=> init());
+})();
+
+</script>
 </body>
 </html>
